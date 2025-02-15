@@ -7,7 +7,7 @@
   --text: 39°, 70%, 88%;
   --accent: 157, 39%, 32%;        /* #327159 */
   --accent-foreground: 156, 61%, 76%;  /* #9CE6CA */
-  --accent-secondary: 29 77% 88%;   /* #F6E7CB */
+  --accent-secondary: 156, 87%, 93%;   /* #F6E7CB */
 }
 
 body {
@@ -33,9 +33,9 @@ body {
     @apply px-4 py-2 rounded-full font-medium transition-colors duration-200;
   }
   .btn-primary {
-    @apply bg-accent text-white hover:bg-accent-foreground;
+    @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white;
   }
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply  bg-accent-secondary rounded-lg shadow-md p-6;
   }
 }
