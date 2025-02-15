@@ -1,9 +1,7 @@
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center space-y-8">
-      <h1 className="text-4xl font-bold text-center">
-        Welcome to Stock Market Simulator!
-      </h1>
+      <h1 className="text-4xl font-bold text-center">StockEd</h1>
       <p className="text-xl text-center max-w-2xl">
         Learn and practice stock trading in a fun, gamified environment. Start
         your journey to becoming a stock market pro!

@@ -1,13 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  padding: 0;
+  margin: 0;
+  border: box-sizing;
   --background: 240 244 248;
   --text: 39°, 70%, 88%;
-  --accent: 157, 39%, 32%;        /* #327159 */
-  --accent-foreground: 156, 61%, 76%;  /* #9CE6CA */
-  --accent-secondary: 156, 87%, 93%;   /* #F6E7CB */
+  --accent: 157, 39%, 32%; /* #327159 */
+  --accent-foreground: 156, 61%, 76%; /* #9CE6CA */
+  --accent-secondary: 156, 87%, 93%; /* #F6E7CB */
 }
 
 body {
@@ -36,6 +41,6 @@ body {
     @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white;
   }
   .card {
-    @apply  bg-accent-secondary rounded-lg shadow-md p-6;
+    @apply bg-accent-secondary rounded-lg shadow-md p-6;
   }
 }
