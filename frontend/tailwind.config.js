@@ -11,6 +11,7 @@ module.exports = {
       },
       colors: {
         background: "hsl(var(--background))",
+        text: "hsl(var(--accent))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -35,6 +36,7 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          secondary: "hsl(var(--accent-secondary))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

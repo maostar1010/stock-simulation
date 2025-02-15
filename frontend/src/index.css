@@ -4,9 +4,10 @@
 
 :root {
   --background: 240 244 248;
-  --text: 45 55 72;
-  --accent: 59 130 246;
-  --accent-foreground: 37 99 235;
+  --text: 39°, 70%, 88%;
+  --accent: 157, 39%, 32%;        /* #327159 */
+  --accent-foreground: 156, 61%, 76%;  /* #9CE6CA */
+  --accent-secondary: 29 77% 88%;   /* #F6E7CB */
 }
 
 body {

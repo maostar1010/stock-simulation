@@ -13,7 +13,7 @@ export default function Navbar() {
       <ul className="space-y-4">
         {navItems.map((item) => (
           <li key={item.to}>
-            <Link to={item.to} className="block py-2 px-4 hover:bg-accent-foreground rounded transition-colors">
+            <Link to={item.to} className="block py-2 px-4 hover:bg-accent-foreground hover:text-accent rounded transition-colors">
               {item.label}
             </Link>
           </li>
