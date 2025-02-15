@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 244 248;
+  --text: 45 55 72;
+  --accent: 59 130 246;
+  --accent-foreground: 37 99 235;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--text));
+  font-family: "Inter", sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold mb-4;
+  }
+  h2 {
+    @apply text-3xl font-semibold mb-3;
+  }
+  h3 {
+    @apply text-2xl font-medium mb-2;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-full font-medium transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-accent text-white hover:bg-accent-foreground;
+  }
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+}
