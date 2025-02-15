@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/simulate", label: "Simulate" },
+  { to: "/profile", label: "Profile" },
+  { to: "/about", label: "About" },
+  { to: "/market", label: "Market" },
+  { to: "/leaderboard", label: "Leaderboard" },
 ];
 
 export default function Navbar() {
