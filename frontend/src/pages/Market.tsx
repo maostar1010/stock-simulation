@@ -1,66 +1,83 @@
 "use client";
 
 import { useState } from "react";
+import StockChart from '../components/StockChart';
+
+const timeframes = ['1D', '1W', '1M', '3M', '1Y'] as const;
 
 export default function Market() {
-  const [balance, setBalance] = useState(10000);
-  const [stocks, setStocks] = useState([
-    { id: 1, name: "TechCo", price: 150, owned: 0 },
-    { id: 2, name: "EcoEnergy", price: 75, owned: 0 },
-    { id: 3, name: "HealthCare", price: 200, owned: 0 },
-  ]);
-
-  const buyStock = (id: number) => {
-    setStocks(
-      stocks.map((stock) =>
-        stock.id === id ? { ...stock, owned: stock.owned + 1 } : stock
-      )
-    );
-    setBalance(balance - stocks.find((s) => s.id === id)!.price);
-  };
-
-  const sellStock = (id: number) => {
-    const stock = stocks.find((s) => s.id === id)!;
-    if (stock.owned > 0) {
-      setStocks(
-        stocks.map((s) => (s.id === id ? { ...s, owned: s.owned - 1 } : s))
-      );
-      setBalance(balance + stock.price);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentSymbol, setCurrentSymbol] = useState('AAPL');
+  const [selectedTimeframe, setSelectedTimeframe] = useState<typeof timeframes[number]>('1D');
+  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setCurrentSymbol(searchQuery.toUpperCase());
+      setSearchQuery('');
     }
   };
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-center">Stock Market Simulation</h1>
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-4">
-          Your Balance: ${balance.toFixed(2)}
-        </h2>
+    <div className="container mx-auto px-4">
+      {/* Search Bar */}
+      <div className="mb-8">
+        <form onSubmit={handleSearch} className="flex gap-4">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Enter stock symbol (e.g., AAPL)"
+            className="flex-grow p-2 border rounded-lg focus:ring-2 focus:ring-accent text-black"
+          />
+          <button
+            type="submit"
+            className="bg-accent text-white px-8 py-2 rounded-lg hover:bg-accent-foreground transition-colors rounded-xl"
+          >
+            Search
+          </button>
+        </form>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {stocks.map((stock) => (
-          <div key={stock.id} className="card">
-            <h3>{stock.name}</h3>
-            <p className="text-lg font-semibold mb-2">Price: ${stock.price}</p>
-            <p className="mb-4">Owned: {stock.owned}</p>
-            <div className="flex justify-between">
-              <button
-                onClick={() => buyStock(stock.id)}
-                className="btn btn-primary"
-                disabled={balance < stock.price}
-              >
-                Buy
-              </button>
-              <button
-                onClick={() => sellStock(stock.id)}
-                className="btn btn-primary"
-                disabled={stock.owned === 0}
-              >
-                Sell
-              </button>
-            </div>
-          </div>
+
+      {/* Timeframe Selector */}
+      <div className="mb-6 flex gap-2">
+        {timeframes.map((timeframe) => (
+          <button
+            key={timeframe}
+            onClick={() => setSelectedTimeframe(timeframe)}
+            className={`btn-primary px-4 py-2 rounded-3xl transition-colors ${
+              selectedTimeframe === timeframe
+                ? 'bg-accent text-white'
+                : 'bg-gray-200 hover:bg-gray-300'
+            }`}
+          >
+            {timeframe}
+          </button>
         ))}
+      </div>
+
+      {/* Stock Chart */}
+      <div className="bg-accent-foreground rounded-3xl p-8">
+        <StockChart 
+          symbol={currentSymbol} 
+          timeframe={selectedTimeframe}
+        />
+      </div>
+
+      {/* Popular Stocks */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Popular Stocks</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {['AAPL', 'GOOGL', 'MSFT', 'AMZN'].map((symbol) => (
+            <button
+              key={symbol}
+              onClick={() => setCurrentSymbol(symbol)}
+              className="btn-primary p-4 rounded-xl shadow hover:shadow-lg transition-shadow"
+            >
+              <span className="font-semibold">{symbol}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
