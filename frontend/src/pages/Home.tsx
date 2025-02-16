@@ -10,6 +10,8 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { token } = useAuth();
 
+  console.log(token);
+
   const navigate = useNavigate();
 
   const openModal = () => setIsModalOpen(true);

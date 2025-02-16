@@ -15,7 +15,7 @@ export const BackgroundBeamsWithCollision = ({
   const containerRef = useRef<HTMLDivElement>(null!);
   const parentRef = useRef<HTMLDivElement>(null!);
 
-  const beams = Array.from({ length: 200 }, (_, i) => ({
+  const beams = Array.from({ length: 100 }, (_, i) => ({
     initialX: Math.random() * 1200,
     duration: Math.floor(Math.random() * 3) + 8, // Duration between 8 and 10
     repeatDelay: Math.random() * 1.5 + 0.5, // Ensures continuous arrival, avoids clustering

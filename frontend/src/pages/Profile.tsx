@@ -1,32 +1,106 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PlantAvatar from "../components/PlantAvatar";
 import { useAuth } from "@/components/signup/AuthContext";
+import axios from "axios";
 
 interface ProfileData {
   username: string;
   memberSince: Date;
-  totalNetValue: number;
-  cashValue: number;
+  balance: number;
+  cash: number;
   marketValue: number;
   netGainPercentage: number;
 }
 
+// interface ProfileData {
+//   username: string;
+//   memberSince: Date;
+//   totalNetValue: number;
+//   cashValue: number;
+//   marketValue: number;
+//   netGainPercentage: number;
+// }
+
+interface Stock {
+  id: number;
+  user: number;
+  ticker: string;
+  shares: number;
+  total_spent: number;
+  total_worth: number;
+}
+
 // Example data
-const profileData: ProfileData = {
-  username: "TradingPro",
-  memberSince: new Date("2024-01-15"),
-  totalNetValue: 25678.45,
-  cashValue: 10000.0,
-  marketValue: 15678.45,
-  netGainPercentage: 56.78, // This will determine plant growth
-};
+// const profileData: ProfileData = {
+//   username: "TradingPro",
+//   memberSince: new Date("2024-01-15"),
+//   totalNetValue: 25678.45,
+//   cashValue: 10000.0,
+//   marketValue: 15678.45,
+//   netGainPercentage: 56.78,
+// };
 
 export default function Profile() {
-  const [showGrowthNotification, setShowGrowthNotification] = useState(false);
-  const [growthMessage, setGrowthMessage] = useState("");
-
   const { token } = useAuth();
   const { logout } = useAuth();
+
+  console.log(token);
+
+  const [profileData, setProfileData] = useState<ProfileData>();
+  const [portfolio, setPortfolio] = useState<Stock[]>([]);
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        console.log(token);
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/user-detail/",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+              application: "application/json",
+            },
+          }
+        );
+        setProfileData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+
+    const fetchPortfolioData = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/api/portfolios/",
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+        setPortfolio(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching portfolio data:", error);
+      }
+    };
+
+    const updatePlant = async () => {
+      if (profileData) {
+        profileData.memberSince = new Date("2024-01-15");
+        profileData.marketValue = profileData.balance - profileData.cash;
+        profileData.netGainPercentage = (profileData.balance - 10000) / 10000;
+      }
+    };
+
+    fetchPortfolioData();
+    fetchProfileData();
+    updatePlant();
+  }, []);
+
+  const [showGrowthNotification, setShowGrowthNotification] = useState(false);
+  const [growthMessage, setGrowthMessage] = useState("");
 
   const handlePlantGrowth = (newStage: any) => {
     setGrowthMessage(
@@ -70,7 +144,7 @@ export default function Profile() {
               Total Net Value
             </h3>
             <p className="text-2xl font-bold text-accent">
-              ${profileData.totalNetValue.toLocaleString()}
+              ${profileData.balance.toLocaleString()}
             </p>
           </div>
 
@@ -80,7 +154,7 @@ export default function Profile() {
               Cash Value
             </h3>
             <p className="text-2xl font-bold text-accent">
-              ${profileData.cashValue.toLocaleString()}
+              ${profileData.cash.toLocaleString()}
             </p>
           </div>
 
