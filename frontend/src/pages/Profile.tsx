@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useState, useEffect } from "react";
 import PlantAvatar from "../components/PlantAvatar";
 import { useAuth } from "@/components/signup/AuthContext";
 import axios from "axios";
