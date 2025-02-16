@@ -15,47 +15,17 @@ export const BackgroundBeamsWithCollision = ({
   const containerRef = useRef<HTMLDivElement>(null!);
   const parentRef = useRef<HTMLDivElement>(null!);
 
-  const beams = [
-    { initialX: 10, duration: 12, repeatDelay: 1, delay: 0 },
-    { initialX: 200, duration: 10, repeatDelay: 1, delay: 1 },
-    {
-      initialX: 300,
-      duration: 10,
-      repeatDelay: 1,
-      delay: 1,
-      className: "bg-red-500",
-    },
-    { initialX: 500, duration: 10, repeatDelay: 1, delay: 1 },
-    {
-      initialX: 700,
-      duration: 10,
-      repeatDelay: 1,
-      delay: 1,
-      className: "bg-red-500",
-    },
-    { initialX: 600, duration: 10, repeatDelay: 1, delay: 1 },
-    {
-      initialX: 100,
-      duration: 14,
-      repeatDelay: 1,
-      className: "h-20 bg-red-500 w-2",
-    },
-    { initialX: 400, duration: 13, repeatDelay: 1, delay: 1 },
-    { initialX: 800, duration: 16, repeatDelay: 1, className: "h-32 w-3" },
-    {
-      initialX: 1000,
-      duration: 11,
-      repeatDelay: 1,
-      className: "h-24 w-2 bg-red-500",
-    },
-    {
-      initialX: 1200,
-      duration: 15,
-      repeatDelay: 2,
-      delay: 1,
-      className: "h-16 w-2",
-    },
-  ];
+  const beams = Array.from({ length: 200 }, (_, i) => ({
+    initialX: Math.random() * 1200,
+    duration: Math.floor(Math.random() * 3) + 8, // Duration between 8 and 10
+    repeatDelay: Math.random() * 1.5 + 0.5, // Ensures continuous arrival, avoids clustering
+    delay: i * 0.2, // Staggered delay for constant flow
+    className: `h-${Math.floor(Math.random() * 20) + 10} w-${
+      Math.floor(Math.random() * 3) + 1
+    } ${Math.random() > 0.8 ? "bg-red-500" : ""}`,
+  }));
+
+  console.log(beams);
 
   return (
     <div
