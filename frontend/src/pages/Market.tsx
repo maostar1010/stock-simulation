@@ -25,7 +25,7 @@ const BuyModal: React.FC<BuyModalProps> = ({ isOpen, onClose, onConfirm, symbol,
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <span className="text-gray-600">Current Price:</span>
-            <span className="font-semibold">${currentPrice.toFixed(2)}</span>
+            <span className="font-semibold text-black !important">${currentPrice.toFixed(2)}</span>
           </div>
           
           <div className="flex flex-col space-y-2">
@@ -36,20 +36,20 @@ const BuyModal: React.FC<BuyModalProps> = ({ isOpen, onClose, onConfirm, symbol,
               min="1"
               value={quantity}
               onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent text-black"
             />
           </div>
 
           <div className="flex justify-between items-center">
             <span className="text-gray-600">Total Cost:</span>
-            <span className="font-semibold">${(quantity * currentPrice).toFixed(2)}</span>
+            <span className="font-semibold text-black !important">${(quantity * currentPrice).toFixed(2)}</span>
           </div>
         </div>
 
         <div className="flex gap-3 mt-6">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors"
+            className="flex-1 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors text-black !important"
           >
             Cancel
           </button>
