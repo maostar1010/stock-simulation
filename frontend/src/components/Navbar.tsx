@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -43,37 +44,45 @@ export default function Navbar() {
         </button>
       </div>
 
-      {isOpen && (
-        <>
-          {/* Combined nav sidebar that starts from top */}
-          <nav className="fixed top-0 left-0 h-full bg-accent w-64 transform transition-transform duration-300 ease-in-out z-40">
-            <div className="h-16 flex items-center justify-center">
-              {/* <h1 className="text-2xl font-bold text-white">StockEd</h1> */}
-            </div>
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Animated Nav Sidebar */}
+            <motion.nav
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 left-0 h-full bg-accent w-64 z-40"
+            >
+              <div className="h-16 flex items-center justify-center"></div>
+              <ul className="space-y-4 p-4 text-xl font-semibold">
+                {navItems.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      to={item.to}
+                      onClick={() => setIsOpen(false)}
+                      className="block py-2 px-4 text-white hover:bg-accent-foreground hover:text-accent rounded transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.nav>
 
-            {/* Navigation links */}
-            <ul className="space-y-4 p-4 text-xl font-semibold">
-              {navItems.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setIsOpen(false)}
-                    className="block py-2 px-4 text-white hover:bg-accent-foreground hover:text-accent rounded transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-30"
-            onClick={() => setIsOpen(false)}
-          ></div>
-        </>
-      )}
+            {/* Animated Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black z-30"
+              onClick={() => setIsOpen(false)}
+            ></motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

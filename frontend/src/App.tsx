@@ -12,7 +12,7 @@ function App() {
       <div className="flex min-h-screen">
         <Navbar />
         <div className="flex-1 flex flex-col flex-grow">
-          <main className="flex-grow px-4 py-8">
+          <main className="flex-grow relative z-0">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/market" element={<Market />} />

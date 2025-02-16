@@ -1,3 +1,10 @@
 django 
 djangorestframework 
 django-cors-headers
+numpy
+pandas
+matplotlib
+yfinance
+tensorflow-macos
+tensorflow-metal
+scikit-learn
