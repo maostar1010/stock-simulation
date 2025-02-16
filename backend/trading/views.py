@@ -222,4 +222,3 @@ def get_1y_stock_price(request, ticker):
     
     except Exception as e:
         return Response({"error": str(e)}, status=500)
-
