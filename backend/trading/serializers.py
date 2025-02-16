@@ -16,7 +16,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data['balance'] = validated_data.get('balance', 10000.00)
-        validated_data['cash'] = validated_data.get('cash', 9000.00)
+        validated_data['cash'] = validated_data.get('cash', 10000.00)
         user = get_user_model().objects.create_user(**validated_data)
         return user
     
