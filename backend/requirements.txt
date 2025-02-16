@@ -5,8 +5,8 @@ numpy
 pandas
 matplotlib
 yfinance
-tensorflow-macos
-tensorflow-metal
+# tensorflow-macos
+# tensorflow-metal
 scikit-learn
 alpha_vantage
 django-cron
