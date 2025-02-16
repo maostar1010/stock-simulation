@@ -1,12 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  padding: 0;
+  margin: 0;
+  border: box-sizing;
   --background: 240 244 248;
-  --text: 45 55 72;
-  --accent: 59 130 246;
-  --accent-foreground: 37 99 235;
+  --text: 39°, 70%, 88%;
+  --accent: 157, 39%, 32%; /* #327159 */
+  --accent-foreground: 156, 61%, 76%; /* #9CE6CA */
+  --accent-secondary: 156, 87%, 93%; /* #F6E7CB */
+}
+
+.dark {
+  --background: 220 26% 12%; /* Dark navy blue */
+  --text: 39 90% 85%; /* Soft yellowish-white for readability */
+  --accent: 157 50% 35%; /* Slightly darker green */
+  --accent-foreground: 156 50% 70%; /* Muted teal */
+  --accent-secondary: 156 80% 85%; /* Lighter pastel teal */
 }
 
 body {
@@ -32,9 +46,9 @@ body {
     @apply px-4 py-2 rounded-full font-medium transition-colors duration-200;
   }
   .btn-primary {
-    @apply bg-accent text-white hover:bg-accent-foreground;
+    @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white text-lg font-semibold;
   }
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-accent-secondary rounded-lg shadow-md p-6;
   }
 }
