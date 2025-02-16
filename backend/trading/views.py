@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import Portfolio, CustomUser
-from. serializers import PortfolioSerializer, UserSerializer
+from. serializers import PortfolioSerializer, UserRegistrationSerializer, UserLoginSerializer
+from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 
 
 @api_view(['GET'])
@@ -56,12 +58,31 @@ def portfolio_buy(request):
 def test_api(request):
     return Response({"message": "API is working!"})
 
+@csrf_exempt
 @api_view(['POST'])
 def UserRegistration(request):
-    serilizer = UserSerializer(data=request.data)
-    if serilizer.is_valid():
-        serilizer.save()
-        return Response(serilizer.data, status=status.HTTP_201_CREATED)
+    serializer = UserRegistrationSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@csrf_exempt
+@api_view(['POST'])
+def UserLogin(request):
+    serializer = UserLoginSerializer(data=request.data)
+    if serializer.is_valid():
+        username = serializer.validated_data['username']
+        password = serializer.validated_data['password']
+        
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request, user)
+            return Response({"message": "Login successful!"})
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     
 
     
