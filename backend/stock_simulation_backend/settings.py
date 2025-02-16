@@ -41,15 +41,14 @@ INSTALLED_APPS = [
     "corsheaders",
     "trading",
     "django_extensions",
+    'rest_framework.authtoken',
 ]
-
-AUTH_USER_MODEL = "trading.CustomUser"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    #"django.middleware.csrf.CsrfViewMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -133,21 +132,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',  
-    ),
-    'DEFAULT_THROTTLE_CLASSES': [],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
-CSRF_COOKIE_SECURE = False  
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000',  
-]
-
-REST_FRAMEWORK['DEFAULT_PARSER_CLASSES'] = [
-    'rest_framework.parsers.JSONParser',
-]
+AUTH_USER_MODEL = 'trading.CustomUser'
