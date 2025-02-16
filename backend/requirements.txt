@@ -10,3 +10,4 @@ yfinance
 scikit-learn
 alpha_vantage
 django-cron
+django_extensions
