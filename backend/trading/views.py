@@ -54,7 +54,6 @@ def portfolio_list(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def portfolio_buy(request):
-    """Buy stocks and update the user's portfolio balance."""
     
     # Extract data from the request
     ticker = request.data.get('ticker')
@@ -153,10 +152,42 @@ def update_portfolio_and_balance(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def sorted_users_by_balance(request):
-    users = CustomUser.objects.all().order_by('-balance') 
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+def sorted_users(request):
+    users = CustomUser.objects.all()
+    user_data = []
+
+    for user in users:
+        portfolios = Portfolio.objects.filter(user=user)
+
+        total_spent = 0.0
+        total_worth = 0.0
+
+        for portfolio in portfolios:
+            total_spent += portfolio.total_spent
+            price = get_stock_price(portfolio.ticker)
+            if price > 0:
+                portfolio.total_worth = portfolio.shares * price
+                portfolio.save()
+                total_worth += portfolio.total_worth
+
+        if total_spent > 0:
+            percentage_change = ((total_worth / total_spent) - 1) * 100
+        else:
+            percentage_change = 0.0  
+
+        user_data.append({
+            "user": UserSerializer(user).data,
+            "total_spent": total_spent,
+            "total_worth": total_worth,
+            "percentage_change": round(percentage_change, 2),
+            "balance": user.balance
+        })
+
+    # Sort the users based on the percentage_change
+    user_data = sorted(user_data, key=lambda x: x["percentage_change"], reverse=True)
+
+    return Response(user_data, status=status.HTTP_200_OK)
+
 
 STOCK_LIST = ["AAPL", "MSFT", "TSLA", "NVDA", "GOOGL", "AMZN", "META", "NFLX", "AMD"]
 
