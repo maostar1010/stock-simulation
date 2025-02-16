@@ -22,6 +22,7 @@ module.exports = {
       colors: {
         background: "hsl(var(--background))",
         text: "hsl(var(--accent))",
+        textHover: "hsl(var(--text-hover))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",

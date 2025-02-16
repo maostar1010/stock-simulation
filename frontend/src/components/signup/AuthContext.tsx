@@ -18,11 +18,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async (username: string, password: string) => {
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        username,
-        password,
+        username: username,
+        password: password,
       });
       localStorage.setItem("token", response.data.access);
       setToken(response.data.access);
+      window.location.href = "/";
     } catch (error) {
       console.error("Login failed", error);
     }
@@ -33,8 +34,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/registration/",
         {
-          username,
-          password,
+          username: username,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       console.log("Signup successful", response.data);

@@ -33,7 +33,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="w-screen bg-black text-white p-4 overflow-hidden">
+    <footer className="w-screen bg-black text-white p-4 h-12 relative overflow-hidden">
       <div className="whitespace-nowrap overflow-hidden">
         <div className="inline-block animate-marquee">
           {[...stocks, ...stocks].map((stock, index) => (
