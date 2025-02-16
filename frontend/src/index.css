@@ -46,7 +46,7 @@ body {
     @apply px-4 py-2 rounded-full font-medium transition-colors duration-200;
   }
   .btn-primary {
-    @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white;
+    @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white text-lg font-semibold;
   }
   .card {
     @apply bg-accent-secondary rounded-lg shadow-md p-6;
