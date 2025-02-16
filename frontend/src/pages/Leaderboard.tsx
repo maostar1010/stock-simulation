@@ -85,6 +85,6 @@ export default function Leaderboard() {
         </div>
       </div>
       {" "}
-    </div></div>
+    </div>
   );
 }
