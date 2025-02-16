@@ -62,7 +62,7 @@ export default function StockChart({ symbol, timeframe }: StockChartProps) {
 
     const cacheKey = `${symbol}-${timeframe}`;
     const cachedData = cacheRef.current[cacheKey];
-    const CACHE_DURATION = 60 * 1000; // 60 seconds
+    const CACHE_DURATION = 600 * 1000; // 60 seconds
 
     if (cachedData && 
         Date.now() - cachedData.timestamp < CACHE_DURATION && 
