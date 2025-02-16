@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { SignUpForm } from "@/components/SignUpModal";
+import { useAuth } from "@/components/signup/AuthContext";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { token } = useAuth();
+
+  const navigate = useNavigate();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
     <BackgroundBeamsWithCollision>
-      <div className="flex flex-col h-full items-center justify-center space-y-8 text-text px-4 sm:px-8">
+      <div className="flex flex-col h-full items-center justify-center space-y-8 text-text px-4 sm:px-8 z-[10] mb-20">
         <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10 mt-10 md:mt-20">
           {/* Logo */}
           <img
@@ -35,9 +39,9 @@ export default function Home() {
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center mt-4">
               <button
                 className="w-full md:w-auto px-14 py-3 rounded-full text-lg sm:text-xl duration-200 transition-colors bg-accent-foreground text-accent hover:bg-accent hover:text-white font-semibold"
-                onClick={openModal}
+                onClick={() => (token ? navigate("/profile") : openModal())}
               >
-                Sign Up
+                {token ? "Account" : "Sign Up"}
               </button>
               <button className="w-full md:w-auto px-16 py-3 rounded-full text-lg sm:text-xl duration-200 transition-colors bg-accent-foreground text-accent hover:bg-accent hover:text-white font-semibold">
                 <Link to="/leaderboard">Leaderboard</Link>
@@ -49,7 +53,7 @@ export default function Home() {
 
       {/* Modal with Darkened Background and Smooth Transitions */}
       <AnimatePresence>
-        {isModalOpen && (
+        {isModalOpen && !token && (
           <>
             {/* Darkened Background Overlay */}
             <motion.div
@@ -57,7 +61,7 @@ export default function Home() {
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black"
+              className="fixed inset-0 bg-black z-[50]"
               onClick={closeModal}
             />
 
@@ -68,7 +72,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 bottom-12 flex items-center justify-center p-4"
+              className="fixed inset-0 bottom-12 flex items-center justify-center p-4 z-[100]"
             >
               <SignUpForm onClose={closeModal} />
             </motion.div>

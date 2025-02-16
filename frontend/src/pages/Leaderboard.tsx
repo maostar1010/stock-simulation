@@ -62,7 +62,7 @@ const leaderboardData = [
 
 export default function Leaderboard() {
   return (
-    <div className="flex justify-center  p-8">
+    <div className="flex justify-center p-8">
       <div className="container mx-auto px-4 py-8 bg-accent-foreground rounded-3xl max-w-5xl w-full">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-center mb-2">Leaderboard</h1>

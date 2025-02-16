@@ -11,19 +11,17 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="flex h-screen">
+        <div className="flex flex-col min-h-screen z-[0]">
           <Navbar />
-          <div className="flex-1 flex flex-col h-full">
-            <main className="h-full relative z-0">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/market" element={<Market />} />
-                <Route path="/leaderboard" element={<Leaderboard />} />
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
+          <main className="flex-grow z-[0]">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/market" element={<Market />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </main>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>

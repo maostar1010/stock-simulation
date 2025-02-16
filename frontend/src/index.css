@@ -10,6 +10,7 @@
   border: box-sizing;
   --background: white;
   --text: 39, 70%, 88%;
+  --text-hover: 157, 39%, 50%;
   --accent: 157, 39%, 32%; /* #327159 */
   --accent-foreground: 156, 61%, 76%; /* #9CE6CA */
   --accent-secondary: 156, 87%, 93%; /* #F6E7CB */
