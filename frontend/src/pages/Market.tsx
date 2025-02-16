@@ -80,7 +80,7 @@ export default function Market() {
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-6xl">
-      <div className="mb-8 relative">
+      <div className="mb-8 relative md:pl-16">
         <form onSubmit={handleSearch} className="flex gap-4">
           <div className="flex-grow relative" ref={searchContainerRef}>
             <input
@@ -92,7 +92,7 @@ export default function Market() {
               }}
               onFocus={() => setShowSuggestions(true)}
               placeholder="Enter stock symbol (e.g., AAPL)"
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent outline-none text-black"
+              className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent outline-none text-black"
             />
             {showSuggestions && suggestions.length > 0 && (
               <div className="absolute w-full mt-1 bg-white border rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
@@ -111,7 +111,7 @@ export default function Market() {
           </div>
           <button
             type="submit"
-            className="btn-primary px-8 py-3 rounded-lg hover:bg-accent/90 transition-colors font-medium"
+            className="btn-primary px-8 py-3 rounded-xl hover:bg-accent/90 transition-colors font-medium"
           >
             Search
           </button>

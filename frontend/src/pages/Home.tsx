@@ -17,8 +17,8 @@ export default function Home() {
 
   return (
     <BackgroundBeamsWithCollision>
-      <div className="flex flex-col h-full items-center justify-center space-y-8 text-text px-4 sm:px-8 z-[10] mb-20">
-        <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10 mt-10 md:mt-20">
+      <div className="min-h-full w-full flex flex-col items-center justify-center space-y-8 text-text px-4 sm:px-8 -mt-16">
+        <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10">
           {/* Logo */}
           <img
             src={logo}
@@ -27,23 +27,23 @@ export default function Home() {
           />
 
           {/* Text Content */}
-          <div className="flex flex-col w-full md:w-1/3 text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mt-6 mb-2">
-              The Perfect Stock Simulation Platform
+          <div className="flex flex-col items-center md:items-start space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-center md:text-left leading-relaxed tracking-wide">
+              The Perfect Stock<br />Simulation Platform
             </h1>
-            <p className="text-lg sm:text-xl font-semibold">
+            <p className="text-xl sm:text-3xl font-semibold">
               Invest, Trade, Build Your Portfolio with Zero Risk.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center mt-4">
+            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-left mt-4 w-full">
               <button
                 className="w-full md:w-auto px-14 py-3 rounded-full text-lg sm:text-xl duration-200 transition-colors bg-accent-foreground text-accent hover:bg-accent hover:text-white font-semibold"
                 onClick={() => (token ? navigate("/profile") : openModal())}
               >
                 {token ? "Account" : "Sign Up"}
               </button>
-              <button className="w-full md:w-auto px-16 py-3 rounded-full text-lg sm:text-xl duration-200 transition-colors bg-accent-foreground text-accent hover:bg-accent hover:text-white font-semibold">
+              <button className="w-full md:w-[160px] px-6 py-3 rounded-full text-lg sm:text-xl duration-200 transition-colors bg-accent-foreground text-accent hover:bg-accent hover:text-white font-semibold">
                 <Link to="/leaderboard">Leaderboard</Link>
               </button>
             </div>

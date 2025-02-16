@@ -13,15 +13,17 @@ function App() {
       <Router>
         <div className="flex flex-col min-h-screen z-[0]">
           <Navbar />
-          <main className="flex-grow z-[0]">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/market" element={<Market />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </main>
-          <Footer />
+          <div className="flex-1 flex flex-col h-full">
+            <main className="flex-1 relative z-0">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/market" element={<Market />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
         </div>
       </Router>
     </AuthProvider>
