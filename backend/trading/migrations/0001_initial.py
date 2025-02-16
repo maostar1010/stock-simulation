@@ -72,15 +72,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-<<<<<<< HEAD
                     "email",
                     models.EmailField(
                         blank=True, max_length=254, verbose_name="email address"
                     ),
                 ),
                 (
-=======
->>>>>>> origin/main
                     "is_staff",
                     models.BooleanField(
                         default=False,
@@ -102,17 +99,8 @@ class Migration(migrations.Migration):
                         default=django.utils.timezone.now, verbose_name="date joined"
                     ),
                 ),
-<<<<<<< HEAD
                 ("balance", models.FloatField(default=10000.0)),
                 ("cash", models.FloatField(default=10000.0)),
-=======
-                (
-                    "email",
-                    models.EmailField(
-                        default="default@example.com", max_length=254, unique=True
-                    ),
-                ),
->>>>>>> origin/main
                 (
                     "groups",
                     models.ManyToManyField(
@@ -157,17 +145,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-<<<<<<< HEAD
                 ("ticker", models.CharField(max_length=10)),
                 ("shares", models.PositiveIntegerField()),
                 ("total_spent", models.FloatField(default=0)),
                 ("total_worth", models.FloatField(default=0)),
-=======
-                ("ticker", models.CharField(max_length=10, unique=True)),
-                ("shares", models.PositiveIntegerField()),
-                ("balance", models.FloatField(default=10000.0)),
-                ("value", models.FloatField()),
->>>>>>> origin/main
                 (
                     "user",
                     models.ForeignKey(
