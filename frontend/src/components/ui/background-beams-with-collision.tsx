@@ -61,7 +61,7 @@ export const BackgroundBeamsWithCollision = ({
     <div
       ref={parentRef}
       className={cn(
-        "h-96 md:h-[40rem] bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 absolute flex items-center w-full justify-center overflow-hidden z-[-1]",
+        "h-full md:h-[40rem] bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-950 dark:to-neutral-800 absolute flex items-center w-full justify-center overflow-hidden z-[-1]",
         className
       )}
     >

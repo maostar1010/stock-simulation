@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       );
       console.log("Signup successful", response.data);
-      await login(username, password); // Automatically log in after signup
+      await login(username, password);
     } catch (error) {
       console.error("Signup failed", error);
     }

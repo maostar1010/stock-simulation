@@ -11,10 +11,10 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="flex min-h-screen">
+        <div className="flex h-screen">
           <Navbar />
-          <div className="flex-1 flex flex-col flex-grow">
-            <main className="flex-grow relative z-0">
+          <div className="flex-1 flex flex-col h-full">
+            <main className="h-full relative z-0">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/market" element={<Market />} />
