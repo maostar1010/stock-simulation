@@ -14,7 +14,7 @@ function App() {
         <div className="flex h-screen">
           <Navbar />
           <div className="flex-1 flex flex-col h-full">
-            <main className="h-full relative z-0">
+            <main className="flex-1 relative z-0">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/market" element={<Market />} />
