@@ -161,6 +161,7 @@ def sorted_users_by_balance(request):
 STOCK_LIST = ["AAPL", "MSFT", "TSLA", "NVDA", "GOOGL", "AMZN", "META", "NFLX", "AMD"]
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_top_gainers(request):
     """Fetch the stock prices for the given list of tickers and calculate the change percentage."""
     try:
@@ -201,6 +202,7 @@ def get_top_gainers(request):
 import numpy as np  # Add this import
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_1y_stock_price(request, ticker):
     """Fetch the stock prices for the last 1 year using yfinance."""
     try:
@@ -222,3 +224,60 @@ def get_1y_stock_price(request, ticker):
     
     except Exception as e:
         return Response({"error": str(e)}, status=500)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def portfolio_sell(request):
+    
+    ticker = request.data.get('ticker')
+    price = request.data.get('price')
+    shares = request.data.get('shares')
+
+    if price is None or shares is None:
+        return Response({"error": "Price and shares must be provided."}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        price = float(price)
+        shares = int(shares)
+    except ValueError:
+        return Response({"error": "Invalid price or shares."}, status=status.HTTP_400_BAD_REQUEST)
+
+    total_value = price * shares
+
+    user = request.user
+
+    try:
+        portfolio = Portfolio.objects.get(user=user, ticker=ticker)
+    except Portfolio.DoesNotExist:
+        return Response({"error": "You do not own any shares of this stock."}, status=status.HTTP_400_BAD_REQUEST)
+
+    if portfolio.shares < shares:
+        return Response({"error": "Insufficient shares to sell."}, status=status.HTTP_400_BAD_REQUEST)
+
+    portfolio.shares -= shares
+    portfolio.total_spent -= portfolio.total_spent * (shares / portfolio.shares)
+    portfolio.total_worth = portfolio.shares * price
+    portfolio.save()
+
+    user.cash += total_value
+    user.save()
+
+    total_worth = 0.0
+    portfolios = Portfolio.objects.filter(user=user)
+
+    for p in portfolios:
+        price = get_stock_price(p.ticker)
+        if price > 0:
+            p.total_worth = p.shares * price
+            p.save()
+
+        total_worth += p.total_worth
+
+    user.balance = user.cash + total_worth
+    user.save()
+
+    return Response({
+        "portfolio": PortfolioSerializer(portfolio).data,
+        "total_worth": total_worth,
+        "updated_balance": user.balance
+    }, status=status.HTTP_200_OK)
