@@ -8,11 +8,12 @@
   padding: 0;
   margin: 0;
   border: box-sizing;
-  --background: 240 244 248;
-  --text: 39°, 70%, 88%;
+  --background: white;
+  --text: 39, 70%, 88%;
   --accent: 157, 39%, 32%; /* #327159 */
   --accent-foreground: 156, 61%, 76%; /* #9CE6CA */
   --accent-secondary: 156, 87%, 93%; /* #F6E7CB */
+  --accent-green: 147, 50%, 36%;
 }
 
 .dark {
@@ -26,29 +27,47 @@
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--text));
-  font-family: "Inter", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 @layer base {
   h1 {
-    @apply text-4xl font-bold mb-4;
+    @apply text-4xl font-bold mb-4 text-black;
   }
   h2 {
-    @apply text-3xl font-semibold mb-3;
+    @apply text-3xl font-semibold mb-3 text-black;
   }
   h3 {
-    @apply text-2xl font-medium mb-2;
+    @apply text-2xl font-medium mb-2 text-black;
+  }
+  p {
+    @apply text-xl text-black;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-full font-medium transition-colors duration-200;
+    @apply px-8 py-3 rounded-full text-2xl font-medium transition-colors duration-200;
   }
   .btn-primary {
     @apply bg-accent-foreground text-accent hover:bg-accent hover:text-white text-lg font-semibold;
   }
   .card {
     @apply bg-accent-secondary rounded-lg shadow-md p-6;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    animation: marquee 15s linear infinite;
+    width: max-content;
   }
 }
