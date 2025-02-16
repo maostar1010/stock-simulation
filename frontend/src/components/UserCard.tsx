@@ -3,41 +3,47 @@ interface UserCardProps {
   username: string;
   netGain: number;
   portfolioValue: number;
-  profileImage?: string;
+  profileImage: string;
 }
 
-export default function UserCard({ rank, username, netGain, portfolioValue, profileImage }: UserCardProps) {
-  const isProfit = netGain >= 0;
+export default function UserCard({ 
+  rank, 
+  username, 
+  netGain = 0, // Default value
+  portfolioValue = 0, // Default value
+  profileImage 
+}: UserCardProps) {
+  
+  // Safe number formatting with fallback
+  const formatNumber = (num: number | undefined) => {
+    if (num === undefined || isNaN(num)) return '$0.00';
+    return num.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+  };
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow">
-      <div className="flex items-center space-x-4">
-        {/* Rank Circle */}
-        <div className="flex-shrink-0 w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-          <span className="text-white text-xl font-bold">#{rank}</span>
+    <div className="bg-white p-4 rounded-xl shadow-md flex items-center gap-4">
+      <div className="flex-shrink-0 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold">
+        {rank}
+      </div>
+      
+      <img
+        src={profileImage || 'default-avatar.png'} // Fallback image
+        alt={`${username}'s avatar`}
+        className="w-12 h-12 rounded-full"
+      />
+      
+      <div className="flex-grow">
+        <h3 className="font-semibold text-lg">{username}</h3>
+        <div className="text-sm text-gray-600">
+          Portfolio Value: {formatNumber(portfolioValue)}
         </div>
-
-        {/* Profile Image */}
-        <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden">
-          <img 
-            src={profileImage || '/default-avatar.png'} 
-            alt={username}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* User Info */}
-        <div className="flex-grow">
-          <h3 className="text-xl font-semibold">{username}</h3>
-          <p className="text-gray-600">Portfolio: ${portfolioValue.toLocaleString()}</p>
-        </div>
-
-        {/* Net Gain/Loss */}
-        <div className={`flex-shrink-0 text-right ${isProfit ? 'text-green-600' : 'text-red-600'}`}>
-          <p className="text-xl font-bold">
-            {isProfit ? '+' : ''}{netGain.toLocaleString()}%
-          </p>
-        </div>
+      </div>
+      
+      <div className={`text-lg font-semibold ${netGain >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+        {formatNumber(netGain)}
       </div>
     </div>
   );

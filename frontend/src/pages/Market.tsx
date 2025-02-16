@@ -185,6 +185,7 @@ export default function Market() {
     setError(null);
 
     try {
+      console.log('Using token: ',token);
       const response = await fetch('http://localhost:8000/api/portfolios/buy/', {
         method: 'POST',
         headers: {
