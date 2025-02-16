@@ -16,25 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-<<<<<<< HEAD
-from django.urls import path
-
-urlpatterns = [
-    path("admin/", admin.site.urls),
-=======
 from django.urls import path, include
-from django.http import HttpResponse
+from rest_framework.authtoken.views import obtain_auth_token
 
-def home(request):
-    return HttpResponse("Welcome to the Stock Simulation API!")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-<<<<<<< HEAD
-    path("api/", include("trading.urls"))
->>>>>>> 95f432b (add portfolio model, view, serializer)
-=======
+    path('api/token/', obtain_auth_token, name='api_token_auth'),
     path("api/", include("trading.urls")),
-    path("", home), 
->>>>>>> 1b8405b (added registration and login)
 ]
