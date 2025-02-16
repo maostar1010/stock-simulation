@@ -17,7 +17,7 @@ class Portfolio(models.Model):
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True, default="default@example.com")
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=10000.00)  
-    cash = models.DecimalField(max_digits=10, decimal_places=2, default=9000.00)
+    cash = models.DecimalField(max_digits=10, decimal_places=2, default=10000.00)
 
     USERNAME_FIELD = 'username' 
     REQUIRED_FIELDS = ['email'] 
