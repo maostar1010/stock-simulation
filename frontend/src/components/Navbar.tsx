@@ -7,11 +7,11 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { token } = useAuth();
 
-  const navItems = [
-    { to: "/", label: "Home" },
-    { to: "/market", label: "Market" },
-    { to: "/leaderboard", label: "Leaderboard" },
-  ];
+const navItems = [
+  { to: "/", label: "Home" },
+  { to: "/market", label: "Trade" },
+  { to: "/leaderboard", label: "Leaderboard" },
+];
 
   if (token) {
     navItems.push({ to: "/profile", label: "Profile" });

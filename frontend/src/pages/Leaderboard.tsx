@@ -62,29 +62,30 @@ const leaderboardData = [
 
 export default function Leaderboard() {
   return (
-    <div className="flex justify-center p-8">
-      <div className="container mx-auto px-4 py-8 bg-accent-foreground rounded-3xl max-w-5xl w-full">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-center mb-2">Leaderboard</h1>
-          <p className="text-xl text-center text-gray-600">
-            Top 8 Traders by Net Gain/Loss
-          </p>
-        </div>
+    <div className="min-h-screen bg-background overflow-hidden">
+      <div className="flex justify-center p-8">
+        <div className="container mx-auto px-4 py-8 bg-accent-foreground rounded-3xl max-w-5xl w-full min-w-[400px] mx-12">
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold text-center mb-2">Leaderboard</h1>
+            <p className="text-xl text-center text-gray-600">
+              Top 8 Traders by Net Gain/Loss
+            </p>
+          </div>
 
-        <div className="space-y-4 max-w-4xl mx-auto">
-          {leaderboardData.map((user, index) => (
-            <UserCard
-              key={user.id}
-              rank={index + 1}
-              username={user.username}
-              netGain={user.netGain}
-              portfolioValue={user.portfolioValue}
-              profileImage={user.profileImage}
-            />
-          ))}
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {leaderboardData.map((user, index) => (
+              <UserCard
+                key={user.id}
+                rank={index + 1}
+                username={user.username}
+                netGain={user.netGain}
+                portfolioValue={user.portfolioValue}
+                profileImage={user.profileImage}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      //{" "}
     </div>
   );
 }
