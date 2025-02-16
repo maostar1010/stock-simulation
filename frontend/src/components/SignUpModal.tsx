@@ -13,11 +13,13 @@ export function SignUpForm({ onClose }: { onClose: () => void }) {
   const [password, setPassword] = useState("");
 
   const { login } = useAuth();
+  const { signup } = useAuth();
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await login(username, password);
-    console.log("login form submitted.");
+    console.log(username, password);
+    await signup(username, password);
+    console.log("sign up form submitted.");
   };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,11 +65,24 @@ export function SignUpForm({ onClose }: { onClose: () => void }) {
         )}
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Username</Label>
-          <Input id="email" placeholder="UserName3000" type="text" />
+          <Input
+            id="email"
+            placeholder="UserName3000"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </LabelInputContainer>
+
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input
+            id="password"
+            placeholder="••••••••"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </LabelInputContainer>
 
         <div className="bg-gradient-to-r from-transparent via-green-300 dark:via-green-700 to-transparent my-8 h-[1px] w-full" />

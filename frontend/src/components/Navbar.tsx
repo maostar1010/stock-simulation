@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/components/signup/AuthContext";
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { token } = useAuth();
 
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/market", label: "Trade" },
   { to: "/leaderboard", label: "Leaderboard" },
-  { to: "/profile", label: "Profile (Test)" },
 ];
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  if (token) {
+    navItems.push({ to: "/profile", label: "Profile" });
+  }
 
   return (
     <>
