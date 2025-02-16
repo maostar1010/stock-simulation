@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Market from "./pages/Market";
+import Leaderboard from "./pages/Leaderboard";
 import Footer from "./components/Footer";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/market" element={<Market />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
             </Routes>
           </main>
           <Footer />
