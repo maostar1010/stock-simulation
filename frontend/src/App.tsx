@@ -5,25 +5,28 @@ import Market from "./pages/Market";
 import Leaderboard from "./pages/Leaderboard";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import { AuthProvider } from "./components/signup/AuthContext";
 
 function App() {
   return (
-    <Router>
-      <div className="flex min-h-screen">
-        <Navbar />
-        <div className="flex-1 flex flex-col flex-grow">
-          <main className="flex-grow relative z-0">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/market" element={<Market />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </main>
-          <Footer />
+    <AuthProvider>
+      <Router>
+        <div className="flex min-h-screen">
+          <Navbar />
+          <div className="flex-1 flex flex-col flex-grow">
+            <main className="flex-grow relative z-0">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/market" element={<Market />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

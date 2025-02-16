@@ -49,7 +49,7 @@ export default function Home() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-black"
-              onClick={closeModal} // Clicking the background closes the modal
+              onClick={closeModal}
             />
 
             {/* Modal Box */}
