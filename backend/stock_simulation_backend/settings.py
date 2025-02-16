@@ -50,11 +50,13 @@ INSTALLED_APPS = [
 >>>>>>> 95f432b (add portfolio model, view, serializer)
 ]
 
+AUTH_USER_MODEL = "trading.CustomUser"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    #"django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -141,4 +143,27 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+<<<<<<< HEAD
 >>>>>>> 95f432b (add portfolio model, view, serializer)
+=======
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  
+    ),
+    'DEFAULT_THROTTLE_CLASSES': [],
+}
+
+CSRF_COOKIE_SECURE = False  
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',  
+]
+
+REST_FRAMEWORK['DEFAULT_PARSER_CLASSES'] = [
+    'rest_framework.parsers.JSONParser',
+]
+>>>>>>> 1b8405b (added registration and login)

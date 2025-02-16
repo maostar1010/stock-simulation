@@ -23,9 +23,18 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 =======
 from django.urls import path, include
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the Stock Simulation API!")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+<<<<<<< HEAD
     path("api/", include("trading.urls"))
 >>>>>>> 95f432b (add portfolio model, view, serializer)
+=======
+    path("api/", include("trading.urls")),
+    path("", home), 
+>>>>>>> 1b8405b (added registration and login)
 ]
