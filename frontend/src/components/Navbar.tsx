@@ -5,7 +5,7 @@ const navItems = [
   { to: "/", label: "Home" },
   { to: "/market", label: "Market" },
   { to: "/leaderboard", label: "Leaderboard" },
-  { to: "/account", label: "Account" },
+  { to: "/profile", label: "Profile (Test)" },
 ];
 
 export default function Navbar() {
@@ -16,7 +16,7 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 p-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-white bg-accent p-2 hover:bg-accent-foreground rounded-lg transition-colors"
+          className="text-white bg-accent p-3 hover:bg-accent-foreground rounded-full transition-colors duration-200"
         >
           <svg
             className="w-6 h-6"
@@ -47,11 +47,10 @@ export default function Navbar() {
         <>
           {/* Combined nav sidebar that starts from top */}
           <nav className="fixed top-0 left-0 h-full bg-accent w-64 transform transition-transform duration-300 ease-in-out z-40">
-
             <div className="h-16 flex items-center justify-center">
               {/* <h1 className="text-2xl font-bold text-white">StockEd</h1> */}
             </div>
-            
+
             {/* Navigation links */}
             <ul className="space-y-4 p-4 text-xl font-semibold">
               {navItems.map((item) => (
