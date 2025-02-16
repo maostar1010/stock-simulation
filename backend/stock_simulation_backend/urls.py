@@ -16,8 +16,16 @@ Including another URLconf
 """
 
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+=======
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/", include("trading.urls"))
+>>>>>>> 95f432b (add portfolio model, view, serializer)
 ]
