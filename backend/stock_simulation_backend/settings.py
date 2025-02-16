@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "trading",
     "django_extensions",
     'rest_framework.authtoken',
-    # 'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -142,7 +141,3 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'trading.CustomUser'
-
-# CRONJOBS = [
-#     ('*/10 * * * *', 'trading.cron.UpdatePortfolioCronJob'),
-# ]
