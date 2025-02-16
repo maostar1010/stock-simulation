@@ -5,7 +5,7 @@ const navItems = [
   { to: "/", label: "Home" },
   { to: "/market", label: "Market" },
   { to: "/leaderboard", label: "Leaderboard" },
-  { to: "/account", label: "Account" },
+  { to: "/profile", label: "Profile (Test)" },
 ];
 
 export default function Navbar() {

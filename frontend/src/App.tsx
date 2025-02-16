@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Market from "./pages/Market";
 import Leaderboard from "./pages/Leaderboard";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/market" element={<Market />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </main>
           <Footer />
