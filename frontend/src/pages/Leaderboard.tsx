@@ -7,7 +7,8 @@ interface UserData {
   id: number;
   username: string;
   netGain: number;
-  portfolioValue: number;
+  cash: number;
+  balance: number;
   profileImage: string;
 }
 
@@ -35,6 +36,7 @@ export default function Leaderboard() {
       const data = await response.json();
       console.log('Leaderboard data:', data);
       setLeaderboardData(data);
+      console.log('Leaderboard data:', leaderboardData);
       setLastUpdated(new Date());
     } catch (err) {
       console.error('Error fetching leaderboard:', err);
@@ -89,8 +91,9 @@ export default function Leaderboard() {
                   key={user.id}
                   rank={index + 1}
                   username={user.username}
+                  balance={user.balance}
                   netGain={user.netGain}
-                  portfolioValue={user.portfolioValue}
+                  portfolioValue={user.balance - user.cash}
                   profileImage={user.profileImage}
                 />
               ))}

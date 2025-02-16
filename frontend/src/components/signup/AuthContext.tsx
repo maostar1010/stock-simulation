@@ -21,8 +21,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         username: username,
         password: password,
       });
-      localStorage.setItem("token", response.data.access);
-      setToken(response.data.access);
+      localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
       window.location.href = "/";
     } catch (error) {
       console.error("Login failed", error);

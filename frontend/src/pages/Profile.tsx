@@ -53,57 +53,78 @@ export default function Profile() {
   const [marketValue, setMarketValue] = useState(0);
   const [netGainPercentage, setNetGainPercentage] = useState(0);
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        console.log(token);
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/user-detail/",
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        setProfileData(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching profile data:", error);
-      }
-    };
+  const fetchProfileData = async () => {
+    if (!token) {
+      console.log('No token available');
+      return;
+    }
 
-    const fetchPortfolioData = async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/portfolios/",
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        setPortfolio(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching portfolio data:", error);
-      }
-    };
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/user-detail/', {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('Profile response:', response.data);
+      setProfileData(response.data);
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
 
-    const updatePlant = async () => {
-      // if (profileData) {
-        console.log("Updating Plant Values...");
-        setMarketValue(profileData.balance - profileData.cash);
-        setNetGainPercentage((profileData.balance - 10000) / 10000);
+  const fetchPortfolioData = async () => {
+    if (!token) {
+      console.log('No token available');
+      return;
+    }
+
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/portfolios/', {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('Portfolio response:', response.data);
+      setPortfolio(response.data);
+    } catch (error) {
+      console.error('Error fetching portfolio data:', error);
+    }
+  };
+
+  const updatePlant = async () => {
+    if (!profileData) {
+      console.log('No profile data available');
+      return;
+    }
+
+    try {
+      const newMarketValue = profileData.balance - profileData.cash;
+      const newNetGainPercentage = (profileData.balance - 10000) / 10000;
       
-      console.log('marketValue: ', marketValue);
-    };
+      console.log('New market value:', newMarketValue);
+      console.log('New net gain percentage:', newNetGainPercentage);
+      
+      setMarketValue(newMarketValue);
+      setNetGainPercentage(newNetGainPercentage);
+    } catch (error) {
+      console.error('Error updating plant:', error);
+    }
+  };
 
-    fetchPortfolioData();
-    fetchProfileData();
-    updatePlant();
-  }, []);
+  useEffect(() => {
+    if (token) {
+      fetchProfileData();
+      fetchPortfolioData();
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (profileData) {
+      updatePlant();
+    }
+  }, [profileData]);
 
   const [showGrowthNotification, setShowGrowthNotification] = useState(false);
   const [growthMessage, setGrowthMessage] = useState("");
@@ -114,6 +135,10 @@ export default function Profile() {
     );
     setShowGrowthNotification(true);
     setTimeout(() => setShowGrowthNotification(false), 5000);
+  };
+
+  const formatPercentage = (value: number) => {
+    return `${(value * 100).toFixed(2)}%`;
   };
 
   return (
@@ -171,7 +196,7 @@ export default function Profile() {
                 Market Value
               </h3>
               <p className="text-2xl font-bold text-accent">
-                {profileData?.marketValue?.toLocaleString() || '$0.00'}
+                {marketValue?.toLocaleString() || '$0.00'}
               </p>
             </div>
           </div>
@@ -188,7 +213,7 @@ export default function Profile() {
               </p>
               <div className="bg-gray-100 rounded-lg p-4">
                 <p className="text-accent font-semibold">
-                  {/* Current Net Gain: {profileData.netGainPercentage}% */}
+                  Current Net Gain: {formatPercentage(netGainPercentage)}
                 </p>
               </div>
             </div>

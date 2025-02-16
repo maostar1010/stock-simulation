@@ -152,7 +152,7 @@ def update_portfolio_and_balance(request):
     }, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def sorted_users_by_balance(request):
     users = CustomUser.objects.all().order_by('-balance') 
     serializer = UserSerializer(users, many=True)

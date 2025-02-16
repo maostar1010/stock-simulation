@@ -2,6 +2,7 @@ interface UserCardProps {
   rank: number;
   username: string;
   netGain: number;
+  balance: number;
   portfolioValue: number;
   profileImage: string;
 }
@@ -10,6 +11,7 @@ export default function UserCard({
   rank, 
   username, 
   netGain = 0, // Default value
+  balance = 0, // Default value
   portfolioValue = 0, // Default value
   profileImage 
 }: UserCardProps) {
@@ -43,7 +45,7 @@ export default function UserCard({
       </div>
       
       <div className={`text-lg font-semibold ${netGain >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-        {formatNumber(netGain)}
+        {formatNumber(balance)}
       </div>
     </div>
   );

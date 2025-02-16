@@ -279,7 +279,7 @@ export default function Market() {
           ))}
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ml-auto">
           {currentPrice && (
             <span className="text-lg font-semibold text-black">
               ${currentPrice.toFixed(2)}
@@ -291,6 +291,13 @@ export default function Market() {
             className="px-6 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white font-medium transition-colors disabled:opacity-50"
           >
             Buy
+          </button>
+          <button
+            onClick={() => (true)}
+            disabled={isLoading || !currentPrice}
+            className="px-6 py-2 rounded-full bg-red-500 hover:bg-green-600 text-white font-medium transition-colors disabled:opacity-50"
+          >
+            Sell
           </button>
         </div>
       </div>
