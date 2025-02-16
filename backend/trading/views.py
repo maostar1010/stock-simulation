@@ -161,6 +161,7 @@ def sorted_users_by_balance(request):
 STOCK_LIST = ["AAPL", "MSFT", "TSLA", "NVDA", "GOOGL", "AMZN", "META", "NFLX", "AMD"]
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_top_gainers(request):
     """Fetch the stock prices for the given list of tickers and calculate the change percentage."""
     try:
