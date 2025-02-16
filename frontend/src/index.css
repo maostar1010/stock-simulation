@@ -13,6 +13,7 @@
   --accent: 157, 39%, 32%; /* #327159 */
   --accent-foreground: 156, 61%, 76%; /* #9CE6CA */
   --accent-secondary: 156, 87%, 93%; /* #F6E7CB */
+  --accent-green: 147, 50%, 36%;
 }
 
 .dark {
@@ -31,13 +32,16 @@ body {
 
 @layer base {
   h1 {
-    @apply text-4xl font-bold mb-4;
+    @apply text-4xl font-bold mb-4 text-black;
   }
   h2 {
-    @apply text-3xl font-semibold mb-3;
+    @apply text-3xl font-semibold mb-3 text-black;
   }
   h3 {
-    @apply text-2xl font-medium mb-2;
+    @apply text-2xl font-medium mb-2 text-black;
+  }
+  p {
+    @apply text-xl text-black;
   }
 }
 
