@@ -1,76 +1,82 @@
-📈 StockSim: The Ultimate Gamified Stock Market Experience!
+# 📈 StockEd: The Ultimate Gamified Stock Market Experience!
 
-🚀 Overview
+## 🚀 Overview
 
-StockSim is a fun, interactive stock market simulation game designed for everyone! Whether you're a beginner looking to learn about stocks or a seasoned investor testing strategies, StockSim makes it easy, engaging, and competitive. Play solo or challenge your friends to see who can build the best portfolio!
+StockEd is a fun, interactive stock market simulation game designed for everyone! Whether you're a beginner looking to learn about stocks or a seasoned investor testing strategies, StockEd makes it easy, engaging, and competitive. Play solo or challenge your friends to see who can build the best portfolio!
 
-🎮 Features
+## 🎯 How to Play
 
-✅ Real-Time Stock Prices - Trade with real-time market data for an authentic experience.✅ Create & Join Games - Challenge your friends in private games or compete in public leagues.✅ Virtual Portfolio - Start with virtual cash and build your dream stock portfolio.✅ Leaderboards - Track your progress and see how you rank against friends and global players.✅ Achievements & Rewards - Unlock badges and rewards as you trade and win competitions.✅ Easy to Use - A sleek, intuitive UI ensures anyone can jump in and start trading.✅ Educational & Fun - Learn the stock market while having a blast!
+1. **Sign Up & Log In** - Create an account to save progress and join the competition.
+2. **Get Virtual Cash** - Start with a set amount of virtual money to trade stocks.
+3. **Buy & Sell Stocks** - Use real-time market data to build and manage your portfolio.
+4. **Compete & Win** - Outperform your friends and climb the leaderboard!
 
-🎯 How to Play
+## 🛠 Tech Stack
 
-Sign Up & Log In - Create an account to save progress and join competitions.
+- React
+- TypeScript
+- TailwindCSS
+- Django REST Framework
+- SQLite
+- NumPy
+- pandas
+- Matplotlib
+- TensorFlow
+- scikit-learn
 
-Join or Create a Game - Set up a private game with friends or join public leagues.
+### Stock Data:
 
-Get Virtual Cash - Start with a set amount of virtual money to trade stocks.
+- Integrated with live stock market APIs (Alpha Vantage, Polygon, and Yahoo Finance)
 
-Buy & Sell Stocks - Use real-time market data to build and manage your portfolio.
+### Authentication:
 
-Compete & Win - Outperform your friends and climb the leaderboard!
+- Token-based authentication using Django
 
-🛠 Tech Stack
+## 📌 Installation & Setup
 
-Frontend: React, Next.js, TailwindCSS
+### Prerequisites
 
-Backend: Node.js, Express.js
+- Node.js & npm installed
+- Python & pip installed
 
-Database: MongoDB
+### Steps
 
-Stock Data: Integrated with live stock market APIs (e.g., Alpha Vantage, Yahoo Finance)
+1. Clone the repository:
 
-Authentication: AWS Cognito
+   ```bash
+   git clone https://github.com/maostar1010/stock-simulation
+   cd stock-simulation
+   ```
 
-📌 Installation & Setup
+2. Start the backend server:
 
-Prerequisites
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   python manage.py migrate
+   python manage.py runserver
+   ```
 
-Node.js & npm installed
+3. Start the frontend:
 
-MongoDB database set up
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
 
-Steps
+4. Set up environment variables inside /frontend:
 
-Clone the repo:
+   - create a .env file
 
-git clone https://github.com/yourusername/stocksim.git
-cd stocksim
+   ```bash
+   ALPHA_VANTAGE_KEY=your_alpha_vantage_key
+   VITE_POLYGON_API_KEY=your_polygon_key
+   ```
 
-Install dependencies:
+   - Add your API keys and database credentials.
 
-npm install
-
-Set up environment variables:
-
-cp .env.example .env
-
-Add your API keys and database credentials.
-
-Start the server:
-
-npm run dev
-
-Open your browser and go to:
-
-http://localhost:3000
-
-🌍 Join the Community
-
-🚀 Discord📢 Twitter📖 Documentation
-
-💡 Future Plans
-
-Implementing Stripe integration will enable users to trade with real monetary values in a controlled environment. This feature will provide users with a more tangible sense of investment returns, reinforcing the educational value of stock trading while maintaining a structured approach to responsible investing.
-
-Get ready to trade, compete, and have fun! 🎉📊
+5. Open your browser and go to:
+   ```
+   http://localhost:3000
+   ```
