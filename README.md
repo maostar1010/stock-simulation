@@ -7,6 +7,8 @@ StockSim is a fun, interactive stock market simulation game designed for everyon
 🎮 Features
 
 ✅ Real-Time Stock Prices - Trade with real-time market data for an authentic experience.✅ Create & Join Games - Challenge your friends in private games or compete in public leagues.✅ Virtual Portfolio - Start with virtual cash and build your dream stock portfolio.✅ Leaderboards - Track your progress and see how you rank against friends and global players.✅ Achievements & Rewards - Unlock badges and rewards as you trade and win competitions.✅ Easy to Use - A sleek, intuitive UI ensures anyone can jump in and start trading.✅ Educational & Fun - Learn the stock market while having a blast!
+<img width="1191" alt="image" src="https://github.com/user-attachments/assets/c4d81570-fbf4-4f1b-abe6-e94f75542834" />
+
 
 🎯 How to Play
 
