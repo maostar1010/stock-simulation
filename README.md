@@ -3,6 +3,8 @@
 ## 🚀 Overview
 
 StockEd is a fun, interactive stock market simulation game designed for everyone! Whether you're a beginner looking to learn about stocks or a seasoned investor testing strategies, StockEd makes it easy, engaging, and competitive. Play solo or challenge your friends to see who can build the best portfolio!
+
+
 <img width="1191" alt="image" src="https://github.com/user-attachments/assets/c4d81570-fbf4-4f1b-abe6-e94f75542834" />
 
 ## 🎯 How to Play
