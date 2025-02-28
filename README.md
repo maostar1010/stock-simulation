@@ -1,16 +1,16 @@
-📈 StockSim: The Ultimate Gamified Stock Market Experience!
+📈 StockEd: The Ultimate Gamified Stock Market Experience!
 
-🚀 Overview
+🚀 **Overview**
 
 StockSim is a fun, interactive stock market simulation game designed for everyone! Whether you're a beginner looking to learn about stocks or a seasoned investor testing strategies, StockSim makes it easy, engaging, and competitive. Play solo or challenge your friends to see who can build the best portfolio!
 
-🎮 Features
+🎮 **Features**
 
 ✅ Real-Time Stock Prices - Trade with real-time market data for an authentic experience.✅ Create & Join Games - Challenge your friends in private games or compete in public leagues.✅ Virtual Portfolio - Start with virtual cash and build your dream stock portfolio.✅ Leaderboards - Track your progress and see how you rank against friends and global players.✅ Achievements & Rewards - Unlock badges and rewards as you trade and win competitions.✅ Easy to Use - A sleek, intuitive UI ensures anyone can jump in and start trading.✅ Educational & Fun - Learn the stock market while having a blast!
 <img width="1191" alt="image" src="https://github.com/user-attachments/assets/c4d81570-fbf4-4f1b-abe6-e94f75542834" />
 
 
-🎯 How to Play
+🎯 **How to Play**
 
 Sign Up & Log In - Create an account to save progress and join competitions.
 
@@ -34,7 +34,7 @@ Stock Data: Integrated with live stock market APIs (e.g., Alpha Vantage, Yahoo F
 
 Authentication: AWS Cognito
 
-📌 Installation & Setup
+📌 **Installation & Setup**
 
 Prerequisites
 
@@ -71,7 +71,7 @@ http://localhost:3000
 
 🚀 Discord📢 Twitter📖 Documentation
 
-💡 Future Plans
+💡 **Future Plans**
 
 Implementing Stripe integration will enable users to trade with real monetary values in a controlled environment. This feature will provide users with a more tangible sense of investment returns, reinforcing the educational value of stock trading while maintaining a structured approach to responsible investing.
 
