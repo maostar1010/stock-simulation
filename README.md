@@ -1,7 +1,7 @@
 # 📈 StockEd
 
-![image](https://github.com/user-attachments/assets/7a3548b4-d31c-49f9-b7f9-a73b44e8b2dd)
-<img width="1191" alt="image" src="https://github.com/user-attachments/assets/c4d81570-fbf4-4f1b-abe6-e94f75542834" />
+<img width="1100" alt="image" src="https://github.com/user-attachments/assets/7a3548b4-d31c-49f9-b7f9-a73b44e8b2dd" />
+<img width="1100" alt="image" src="https://github.com/user-attachments/assets/c4d81570-fbf4-4f1b-abe6-e94f75542834" />
 
 ## 🚀 Overview
 
